@@ -1,0 +1,1 @@
+{"asco":{},"buena":{},"buenas":{},"buenos":{},"cmo":{},"comida":{},"das":{},"de":{},"encant":{},"ensalada":{},"espantosa":{},"ests":{},"estuvo":{},"excelente":{},"favor":{},"fea":{},"gaseosa":{},"genial":{},"gust":{},"hamburguesa":{},"hola":{},"horrible":{},"lujo":{},"me":{},"no":{},"noches":{},"ordenar":{},"pizza":{},"por":{},"que":{},"quiero":{},"tan":{},"tardes":{},"una":{}}

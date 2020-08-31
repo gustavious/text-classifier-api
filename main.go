@@ -2,7 +2,9 @@ package main
 
 import (
 	"bufio"
+	"fmt"
 	"log"
+	"net/http"
 	"os"
 	"strings"
 )
@@ -35,7 +37,25 @@ func loadData(file string) map[string]string {
 	return dataMap
 }
 
-/*
+// Initialize a new classifier
+var model = newClassifier()
+
+func main() {
+	// Initialize router
+	routers()
+
+	// train  model
+	dataset := loadData("./chats")
+	fmt.Println("Dataset: ", dataset)
+	model.train(dataset)
+
+	// Serve api
+	fmt.Println("Server listening on port: ", 8005)
+	http.ListenAndServe(":8005", Logger())
+}
+
+
+/* this was just to run the model dynamically
 func main() {
 	// Initialize a new classifier
 	model := newClassifier()
@@ -62,4 +82,4 @@ func main() {
 		fmt.Println("Classification: ", class)
 	}
 }
- */
+*/

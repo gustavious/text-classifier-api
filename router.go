@@ -1,0 +1,30 @@
+package main
+
+import (
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+	_ "github.com/go-sql-driver/mysql"
+)
+
+var router *chi.Mux
+
+
+func routers() *chi.Mux {
+	router.Post("/message", ProcessMessage)
+	return router
+}
+
+func init() {
+	router = chi.NewRouter()
+	router.Use(middleware.Recoverer)
+}
+
+
+type Post struct {
+	Message string `json:"message"`
+}
+
+
+
+
+

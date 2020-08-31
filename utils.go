@@ -1,10 +1,50 @@
 package main
 
 import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
 	"math"
+	"net/http"
 	"regexp"
 	"strings"
+	"time"
 )
+
+// respondwithError return error message
+func respondWithError(w http.ResponseWriter, code int, msg string) {
+	respondwithJSON(w, code, map[string]string{"message": msg})
+}
+
+// respondwithJSON write json response format
+func respondwithJSON(w http.ResponseWriter, code int, payload interface{}) {
+	response, _ := json.Marshal(payload)
+	fmt.Println(payload)
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(code)
+	w.Write(response)
+}
+
+// Logger return log message
+func Logger() http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Println(time.Now(), r.Method, r.URL)
+		router.ServeHTTP(w, r) // dispatch the request
+	})
+}
+
+// writeOutputFile writes to output file
+func writeOutputFile(classifier *classifier) {
+	// write the whole body at once
+	b, _ := json.Marshal(classifier.dataset)
+
+	fmt.Println(b)
+
+	err := ioutil.WriteFile("classifierRawOutputData.txt", b, 0644)
+	if err != nil {
+		panic(err)
+	}
+}
 
 // stopwords are words which have very little meaning
 var stopwords = map[string]struct{}{
