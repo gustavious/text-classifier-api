@@ -36,11 +36,9 @@ func Logger() http.Handler {
 // writeOutputFile writes to output file
 func writeOutputFile(classifier *classifier) {
 	// write the whole body at once
-	b, _ := json.Marshal(classifier.dataset)
+	out, _ := json.Marshal(classifier.dataset)
 
-	fmt.Println(b)
-
-	err := ioutil.WriteFile("classifierRawOutputData.txt", b, 0644)
+	err := ioutil.WriteFile("classifierRawOutputData.txt", out, 0644)
 	if err != nil {
 		panic(err)
 	}

@@ -18,13 +18,3 @@ func init() {
 	router = chi.NewRouter()
 	router.Use(middleware.Recoverer)
 }
-
-
-type Post struct {
-	Message string `json:"message"`
-}
-
-
-
-
-

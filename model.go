@@ -2,13 +2,14 @@ package main
 
 import "fmt"
 
-// The string values of the different classes
+// The string values of the different categories
 const (
 	liked    = "liked"
 	disliked = "disliked"
 	greeting = "greeting"
 	food = "food"
 	order = "order"
+	pizza = "pizza"
 	hamburger = "hamburger"
 	soda = "soda"
 	salad = "salad"
@@ -25,28 +26,6 @@ type wordFrequency struct {
 }
 
 // classifier can be trained and used to categorize objects
-// Attributes:
-//	dataset: map each class with a list of  sentences from training data
-//		map[string][]string{
-//			"liked": []string{
-//				"The restaurant is excellent",
-//				"I really love this restaurant",
-//			},
-//			"disliked": []string{
-//				"Their food is awful",
-//			}
-//
-//		}
-//	words: map each word with their frequency
-//		map[string]wordFrequency{
-//			"restaurant": wordFrequency{
-//				word: "restaurant"
-//				counter: map[string]int{
-//					"liked": 2
-//					"disliked": 0
-//				}
-// 			}
-//		}
 type classifier struct {
 	dataset map[string][]string
 	words   map[string]wordFrequency
@@ -62,11 +41,6 @@ func newClassifier() *classifier {
 }
 
 // train populates a classifier's dataset and words with input dataset map
-// Sample dataset: map[string]string{
-//	"The restaurant is excellent": "Positive",
-//	"I really love this restaurant": "Positive",
-//	"Their food is awful": "Negative",
-//}
 func (c *classifier) train(dataset map[string]string) {
 	// fmt.Printf("> Dataset ", dataset)
 	for sentence, class := range dataset {
@@ -89,6 +63,7 @@ func (c classifier) classify(sentence string) map[string]float64 {
 	greetingProb := c.probability(words, greeting)
 	foodProb := c.probability(words, food)
 	orderProb := c.probability(words, order)
+	pizzaProb := c.probability(words, hamburger)
 	hamburgerProb := c.probability(words, hamburger)
 	saladProb := c.probability(words, salad)
 	sodaProb := c.probability(words, soda)
@@ -99,6 +74,7 @@ func (c classifier) classify(sentence string) map[string]float64 {
 		greeting: greetingProb,
 		food: foodProb,
 		order: orderProb,
+		pizza: pizzaProb,
 		hamburger: hamburgerProb,
 		salad: saladProb,
 		soda: sodaProb,
@@ -120,6 +96,7 @@ func (c *classifier) addWord(word, class string) {
 			greeting: 0,
 			food: 0,
 			order: 0,
+			pizza: 0,
 			hamburger: 0,
 			soda: 0,
 			salad: 0,
@@ -149,6 +126,7 @@ func (c classifier) totalWordCount(class string) int {
 	greetingCount := 0
 	foodCount := 0
 	orderCount := 0
+	pizzaCount := 0
 	hamburgerCount := 0
 	saladCount := 0
 	sodaCount := 0
@@ -158,6 +136,7 @@ func (c classifier) totalWordCount(class string) int {
 		greetingCount += wf.counter[greeting]
 		foodCount += wf.counter[food]
 		orderCount += wf.counter[order]
+		pizzaCount += wf.counter[pizza]
 		hamburgerCount += wf.counter[hamburger]
 		saladCount += wf.counter[salad]
 		sodaCount += wf.counter[soda]
@@ -179,7 +158,7 @@ func (c classifier) totalWordCount(class string) int {
 	} else if class == soda {
 		return sodaCount
 	} else {
-		return likeCount + dislikeCount + greetingCount + foodCount + orderCount + hamburgerCount +
+		return likeCount + dislikeCount + greetingCount + foodCount + orderCount + pizzaCount + hamburgerCount +
 			saladCount + sodaCount
 	}
 }
@@ -191,6 +170,7 @@ func (c classifier) totalDistinctWordCount() int {
 	greetingCount := 0
 	foodCount := 0
 	orderCount := 0
+	pizzaCount := 0
 	hamburgerCount := 0
 	saladCount := 0
 	sodaCount := 0
@@ -201,6 +181,7 @@ func (c classifier) totalDistinctWordCount() int {
 		greetingCount += zeroOneTransform(wf.counter[greeting])
 		foodCount += zeroOneTransform(wf.counter[food])
 		orderCount += zeroOneTransform(wf.counter[order])
+		pizzaCount += zeroOneTransform(wf.counter[pizza])
 		hamburgerCount += zeroOneTransform(wf.counter[hamburger])
 		saladCount += zeroOneTransform(wf.counter[salad])
 		sodaCount += zeroOneTransform(wf.counter[soda])

@@ -53,33 +53,3 @@ func main() {
 	fmt.Println("Server listening on port: ", 8005)
 	http.ListenAndServe(":8005", Logger())
 }
-
-
-/* this was just to run the model dynamically
-func main() {
-	// Initialize a new classifier
-	model := newClassifier()
-	dataset := loadData("./chats")
-	model.train(dataset)
-
-	reader := bufio.NewReader(os.Stdin)
-	for {
-		fmt.Println(" ")
-		fmt.Print("En qué te podemos ayudar?: ")
-		sentence, _ := reader.ReadString('\n')
-		results := model.classify(sentence)
-		class := ""
-
-		maxWeight := 0.0
-		for name, weight := range results {
-			if  weight > maxWeight {
-				maxWeight = weight
-				class = name
-			}
-		}
-
-		fmt.Println("Key word weights: ", results)
-		fmt.Println("Classification: ", class)
-	}
-}
-*/
