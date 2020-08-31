@@ -1,0 +1,51 @@
+hola#greeting
+cómo estás?#greeting
+buenos días#greeting
+buenas tardes#greeting
+buenas noches#greeting
+la comida estuvo excelente#liked
+me encantó la comida#liked
+la comida estuvo de lujo#liked
+que comida tan buena#liked
+genial la comida#liked
+no me gustó la comida#disliked
+la comida estuvo horrible#disliked
+que comida tan fea#disliked
+que asco de comida#disliked
+la comida estuvo espantosa#disliked
+quiero ordenar pizza#food
+quiero ordenar pizza#order
+quiero ordenar pizza#pizza
+por favor quiero una pizza#food
+por favor quiero una pizza#order
+por favor quiero una pizza#pizza
+pizza por favor#food
+pizza por favor#pizza
+pizza por favor#order
+quiero ordenar hamburguesa#food
+quiero ordenar hamburguesa#order
+quiero ordenar hamburguesa#hamburger
+por favor quiero una hamburguesa#food
+por favor quiero una hamburguesa#order
+por favor quiero una hamburguesa#hamburger
+hamburguesa por favor#food
+hamburguesa por favor#order
+hamburguesa por favor#hamburger
+quiero ordenar ensalada#food
+quiero ordenar ensalada#order
+quiero ordenar ensalada#salad
+por favor quiero una ensalada#food
+por favor quiero una ensalada#order
+por favor quiero una ensalada#salad
+ensalada por favor#food
+ensalada por favor#order
+ensalada por favor#salad
+quiero ordenar gaseosa#food
+quiero ordenar gaseosa#order
+quiero ordenar gaseosa#soda
+por favor quiero una gaseosa#food
+por favor quiero una gaseosa#order
+por favor quiero una gaseosa#soda
+gaseosa por favor#food
+gaseosa por favor#order
+gaseosa por favor#soda
