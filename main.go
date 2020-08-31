@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"log"
 	"os"
 	"strings"
@@ -36,6 +35,7 @@ func loadData(file string) map[string]string {
 	return dataMap
 }
 
+/*
 func main() {
 	// Initialize a new classifier
 	model := newClassifier()
@@ -62,3 +62,4 @@ func main() {
 		fmt.Println("Classification: ", class)
 	}
 }
+ */
