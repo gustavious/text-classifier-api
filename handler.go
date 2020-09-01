@@ -65,7 +65,7 @@ func ProcessMessage(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Key word weights: ", results)
 	respondwithJSON(w, http.StatusCreated, map[string]string{
-		"awswer": getAnswerFromCategory(category),
+		"answer": getAnswerFromCategory(category),
 		"category": category,
 	})
 }
