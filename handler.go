@@ -33,8 +33,22 @@ func getAnswerFromCategory(category string) string {
 	return "No he entendido eso ultimo"
 }
 
+// OptionsPreflight Handle cors for preflight OPTIONS
+func OptionsPreflight(w http.ResponseWriter, r *http.Request) {
+	setupResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		return
+	}
+}
+
+
 // ProcessMessage classifies a given message
 func ProcessMessage(w http.ResponseWriter, r *http.Request) {
+	// Handle cors for preflight OPTIONS
+	setupResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		return
+	}
 	var msg Message
 	json.NewDecoder(r.Body).Decode(&msg)
 

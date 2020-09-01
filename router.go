@@ -10,6 +10,7 @@ var router *chi.Mux
 
 
 func routers() *chi.Mux {
+	router.Options("/message", OptionsPreflight)
 	router.Post("/message", ProcessMessage)
 	return router
 }
