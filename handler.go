@@ -17,6 +17,8 @@ func getAnswerFromCategory(category string) string {
 		return "¡Bienvenido! Nos alegra verte de por aquí ¿En que te podemos ayudar?"
 	case liked:
 		return "¡Nos alegra mucho que te haya gustado! Esperamos que vuelvas pronto"
+	case disliked:
+		return "Cuentanos... ¿Qué podemos hacer para mejorar nuestra experiencia?"
 	case order:
 		return "¿Qué deseas ordenar?"
 	case food:
@@ -33,8 +35,22 @@ func getAnswerFromCategory(category string) string {
 	return "No he entendido eso ultimo"
 }
 
+// OptionsPreflight Handle cors for preflight OPTIONS
+func OptionsPreflight(w http.ResponseWriter, r *http.Request) {
+	setupResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		return
+	}
+}
+
+
 // ProcessMessage classifies a given message
 func ProcessMessage(w http.ResponseWriter, r *http.Request) {
+	// Handle cors for preflight OPTIONS
+	setupResponse(&w, r)
+	if (*r).Method == "OPTIONS" {
+		return
+	}
 	var msg Message
 	json.NewDecoder(r.Body).Decode(&msg)
 
@@ -51,7 +67,7 @@ func ProcessMessage(w http.ResponseWriter, r *http.Request) {
 
 	fmt.Println("Key word weights: ", results)
 	respondwithJSON(w, http.StatusCreated, map[string]string{
-		"awswer": getAnswerFromCategory(category),
+		"answer": getAnswerFromCategory(category),
 		"category": category,
 	})
 }
