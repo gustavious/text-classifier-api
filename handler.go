@@ -17,6 +17,8 @@ func getAnswerFromCategory(category string) string {
 		return "¡Bienvenido! Nos alegra verte de por aquí ¿En que te podemos ayudar?"
 	case liked:
 		return "¡Nos alegra mucho que te haya gustado! Esperamos que vuelvas pronto"
+	case disliked:
+		return "Cuentanos... ¿Qué podemos hacer para mejorar nuestra experiencia?"
 	case order:
 		return "¿Qué deseas ordenar?"
 	case food:
